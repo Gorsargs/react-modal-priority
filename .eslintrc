@@ -8,6 +8,7 @@
   "rules": {
     "react-refresh/only-export-components": ["off", { "allowConstantExport": true }],
     "@typescript-eslint/no-explicit-any": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": ["off", { "varsIgnorePattern": "^_" }]
   }
 }
