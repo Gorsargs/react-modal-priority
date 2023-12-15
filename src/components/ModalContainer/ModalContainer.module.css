@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+}
+
+.vertical__center {
+  align-items: center;
+}
+
+.vertical__start {
+  align-items: start;
+}
+
+.vertical__end {
+  align-items: end;
+}
+
+.horizontal__start {
+  justify-content: start;
+}
+
+.horizontal__end {
+  justify-content: end;
+}
+
+.horizontal__center {
+  justify-content: center;
+}
