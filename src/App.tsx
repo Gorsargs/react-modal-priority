@@ -4,6 +4,8 @@ import { Card } from './components/Card';
 import { useModalContext } from './context/ModalContext';
 import shortid from 'shortid';
 
+const intervalModalSuperPriority = 'interval_modal_super_priority';
+
 const Button = ({ title, onClick }: { title: string; onClick: () => void }) => {
   return (
     <div className="btn" onClick={() => onClick()}>
@@ -13,7 +15,7 @@ const Button = ({ title, onClick }: { title: string; onClick: () => void }) => {
 };
 
 function App() {
-  const { addModal } = useModalContext();
+  const { showModal, deleteIntervalModal } = useModalContext();
 
   return (
     <>
@@ -28,7 +30,7 @@ function App() {
       >
         <Button
           onClick={() => {
-            addModal<typeof Card>({
+            showModal<typeof Card>({
               component: Card,
               componentProps: {
                 title: 'Super Priority With Interval',
@@ -46,7 +48,7 @@ function App() {
         />
         <Button
           onClick={() => {
-            addModal<typeof Card>({
+            showModal<typeof Card>({
               component: Card,
               componentProps: {
                 title: 'Super Priority',
@@ -63,7 +65,7 @@ function App() {
         />
         <Button
           onClick={() => {
-            addModal<typeof Card>({
+            showModal<typeof Card>({
               component: Card,
               componentProps: { title: 'Regular Priority Modal' },
               id: Math.random().toString(),
@@ -76,24 +78,32 @@ function App() {
           }}
           title="Regular Modal"
         />
-        <Button
-          onClick={() => {
-            addModal<typeof Card>({
-              component: Card,
-              componentProps: {
-                title: 'Interval Modal Super Priority',
-              },
-              id: Math.random().toString(),
-              superPriority: true,
-              interval: 3000,
-            });
-          }}
-          title="Interval Modal Super Priority"
-        />
+        <div style={{ display: 'flex', gap: 10, flexDirection: 'column' }}>
+          <Button
+            onClick={() => {
+              showModal<typeof Card>({
+                component: Card,
+                componentProps: {
+                  title: 'Interval Modal Super Priority',
+                },
+                id: intervalModalSuperPriority,
+                superPriority: true,
+                interval: 2000,
+              });
+            }}
+            title="Interval Modal Super Priority"
+          />
+          <Button
+            title="delete Interval Modal"
+            onClick={() => {
+              deleteIntervalModal(intervalModalSuperPriority);
+            }}
+          />
+        </div>
         <Button
           onClick={() => {
             setTimeout(() => {
-              addModal<typeof Card>({
+              showModal<typeof Card>({
                 component: Card,
                 componentProps: {
                   title: 'Async Modal',
@@ -107,7 +117,7 @@ function App() {
 
         <Button
           onClick={() => {
-            addModal<typeof Modal>({
+            showModal<typeof Modal>({
               component: Modal,
               componentProps: {
                 title: 'andt modal',
@@ -123,7 +133,7 @@ function App() {
         />
         <Button
           onClick={() => {
-            addModal<typeof Card>({
+            showModal<typeof Card>({
               component: Card,
               componentProps: {
                 title: 'title',

@@ -1,17 +1,18 @@
 import React, { JSXElementConstructor } from 'react';
-import { ComponentPropsType, Modal, ModalParams } from './Modal';
+import { Modal, ComponentPropsType, ModalParams } from '../Modal';
 
 export type ModalId = string;
 
-interface IModalSystem {
-  addModal<T extends ComponentPropsType>(modal: ModalParams<T>): void;
-  removeModal(modalId: string): void;
+export interface IModalManager {
+  showModal<T extends ComponentPropsType>(modal: ModalParams<T>): void;
+  closeModal(modalId: string): void;
   getModals(): Modal[];
   deleteIntervalModal(modalId: ModalId): void;
 }
 
-class ModalSystem implements IModalSystem {
+export class ModalManager implements IModalManager {
   private _modals: Modal[] = [];
+  protected modalsIntervals: { [key: ModalId]: NodeJS.Timeout } = {};
   private _setState: React.Dispatch<React.SetStateAction<Modal[]>>;
 
   constructor(setState: React.Dispatch<React.SetStateAction<Modal[]>>) {
@@ -39,33 +40,30 @@ class ModalSystem implements IModalSystem {
     return this.modals;
   };
 
-  addModal = <T extends JSXElementConstructor<any>>(newModal: Modal<T>): void => {
+  showModal = <T extends JSXElementConstructor<any>>(newModal: Modal<T>): void => {
     const tempModal = this.modals.find((modal) => modal.id === newModal.id);
+    if (tempModal) return;
 
-    if (!tempModal) {
-      if (newModal) this.modals = [...this.modals, new Modal<T>(newModal)];
-    } else {
-      if (tempModal.keepMounted && tempModal.visible == false) {
-        this.changeVisibility(tempModal, true);
-        this.modals = [...this.modals];
-      }
+    if (newModal) {
+      this.modals = [...this.modals, new Modal<T>(newModal)];
     }
   };
 
-  deleteIntervalModal(modalId: string): void {
+  deleteIntervalModal = (modalId: string): void => {
     const modal = this.modals.find((modal) => modal.id === modalId);
     if (modal) {
-      modal.interval = undefined;
-      this.removeModal(modalId);
+      modal.interval = 0;
+      this.closeModal(modalId);
     }
-  }
+    this.cleanIntervalTimeout(modalId);
+  };
 
   protected changeVisibility = (modal: Modal, isVisible: boolean): void => {
     modal.visible = isVisible;
     this.modals = [...this.modals];
   };
 
-  removeModal = (modalId: string): void => {
+  closeModal = (modalId: string): void => {
     const tempModal = this.modals.find((modal) => modal.id === modalId);
     if (!tempModal) return;
 
@@ -80,40 +78,31 @@ class ModalSystem implements IModalSystem {
 
     if (tempModal.interval) {
       this.modals = this.modals.filter((modal) => modal.id !== tempModal.id);
+      // eslint-disable-next-line no-debugger
       this.addIntervalModalBack(tempModal);
       return;
     }
 
     this.modals = this.modals.filter((modal) => modal.id !== tempModal.id);
-    // const filteredModals = this.modals.filter((modal) => {
-    //   if (modal.id !== modalId) {
-    //     return true;
-    //   } else if (modal.keepMounted) {
-    //     this.changeVisibility(modal, false);
-    //     if (modal.interval) {
-    //       this.addIntervalModalBackKeepMounted(modal);
-    //     }
-    //     //return true because we need to keep the modal instance in the array
-    //     return true;
-    //   } else if (modal.interval) {
-    //     this.addIntervalModalBack(modal);
-    //   }
-    // });
-    // this.modals = filteredModals;
   };
 
   protected addIntervalModalBack = (removedIntervalModal: Modal) => {
     //adds modal back to the modals array if it has an interval option
-    setTimeout(() => {
-      this.addModal(removedIntervalModal);
+    const timeout = setTimeout(() => {
+      this.showModal(removedIntervalModal);
     }, removedIntervalModal.interval);
+    this.modalsIntervals[removedIntervalModal.id] = timeout;
   };
 
   protected addIntervalModalBackKeepMounted = (removedIntervalModal: Modal) => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       this.changeVisibility(removedIntervalModal, true);
     }, removedIntervalModal.interval);
+    this.modalsIntervals[removedIntervalModal.id] = timeout;
+  };
+
+  protected cleanIntervalTimeout = (modalId: ModalId) => {
+    clearTimeout(this.modalsIntervals[modalId]);
+    delete this.modalsIntervals[modalId];
   };
 }
-
-export default ModalSystem;

@@ -10,6 +10,7 @@ body {
 
 .btn {
   background-color: #0a0a23;
+  height: min-content;
   color: #fff;
   border: none;
   border-radius: 10px;

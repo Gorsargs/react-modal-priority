@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useMemo } from 'react';
 import { useModalContext } from './ModalContext';
-import { Modal } from '@/ModalSystem/Modal';
+import { Modal } from '@/core/Modal/';
 
 interface CurrentModalProvider {
   children: any;
@@ -18,14 +18,11 @@ const CurrentModalContext = createContext<CurrentModalContext>({
 });
 
 export const CurrentModalProvider: React.FC<CurrentModalProvider> = ({ children, modal }) => {
-  const { removeModal } = useModalContext();
+  const { closeModal } = useModalContext();
 
   const memoizedValue = useMemo(() => {
-    const closeModal = () => {
-      removeModal(modal.id);
-    };
-    return { closeModal, modal };
-  }, [removeModal, modal]);
+    return { closeModal: () => closeModal(modal.id), modal };
+  }, [closeModal, modal]);
 
   return <CurrentModalContext.Provider value={memoizedValue}>{children}</CurrentModalContext.Provider>;
 };

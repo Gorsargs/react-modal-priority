@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ModalContainer.module.css';
 import { FocusTrap } from '../FocusTrap';
-import { ComponentPropsType } from '@/ModalSystem/Modal';
+import { ComponentPropsType } from '@/components/core/Modal/Modal';
 
 type Placement = 'start' | 'end' | 'center';
 

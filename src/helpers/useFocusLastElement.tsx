@@ -1,4 +1,4 @@
-import { Modal } from '@/ModalSystem/Modal';
+import { Modal } from '@/core/Modal';
 import { MODAL_FOCUS_CLASSNAME, RMP_MODAL_CONTAINER } from '@/constants/constants';
 import { useEffect } from 'react';
 

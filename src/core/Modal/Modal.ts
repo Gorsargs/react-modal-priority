@@ -1,4 +1,4 @@
-import { ModalId } from './ModalSystem';
+import { ModalId } from '../ModalManager/ModalManager';
 import { CSSProperties, ComponentProps, JSXElementConstructor } from 'react';
 import { IModalContainerProps } from '@/components/ModalContainer/ModalContainer';
 import { PortalContainer } from '@/components/ReactPortal/ReactPortal';

@@ -7,7 +7,7 @@ import { Modal } from 'antd';
 
 const Card = ({ title, description }: { title: string; description?: { title: string } }) => {
   const { closeModal } = useCurrentModal();
-  const { addModal } = useModalContext();
+  const { showModal } = useModalContext();
   const [num, setNum] = useState(0);
 
   const onAddClick = () => {
@@ -26,7 +26,7 @@ const Card = ({ title, description }: { title: string; description?: { title: st
       <button onClick={onAddClick}>Add</button>
       <button
         onClick={() => {
-          addModal<typeof Modal>({
+          showModal<typeof Modal>({
             component: Modal,
             containerProps: {
               horizontalPlacement: ['end', 'start', 'center'][Math.floor(Math.random() * 3)] as any,
