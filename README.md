@@ -1,6 +1,6 @@
-# rect-priority-modal
+# react-priority-modal
 
-rect-priority-modal is a lightweight, easy-to-use library for managing the priority of modals in web applications. This library allows developers to control which modal appears on top of others based on a flexible priority system.
+react-priority-modal is a lightweight, easy-to-use library for managing the priority of modals in web applications. This library allows developers to control which modal appears on top of others based on a flexible priority system.
 
 ## Features
 
