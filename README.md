@@ -1,30 +1,15 @@
-# React + TypeScript + Vite
+# ModalPriorityControl
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ModalPriorityControl is a lightweight, easy-to-use library for managing the priority of modals in web applications. This library allows developers to control which modal appears on top of others based on a flexible priority system.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Priority-Based Modal Management**: Easily assign priorities to modals to control their stacking order.
+- **Dynamic Priority Adjustment**: Change the priorities of modals on the fly.
+- **Event Handling**: Ensure higher priority modals receive events first.
+- **Cross-Platform Compatibility**: Works seamlessly across different browsers and devices.
+- **Easy Integration**: Designed to be easily integrated into existing projects.
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Coming soon...
