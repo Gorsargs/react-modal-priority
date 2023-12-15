@@ -1,13 +1,16 @@
-import { useState, useLayoutEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { createWrapperAndAppendToBody } from '@/helpers';
+import { RMP_MODAL_CONTAINER } from '@/constants/constants';
+
+export type PortalContainer = string | HTMLElement;
 
 interface IReactPortal {
   children: React.ReactNode | React.ReactNode[];
-  wrapperId: string;
+  wrapperId?: string;
 }
 
-function ReactPortal({ children, wrapperId = 'react-portal-wrapper' }: IReactPortal) {
+function ReactPortal({ children, wrapperId = RMP_MODAL_CONTAINER }: IReactPortal) {
   const [wrapperElement, setWrapperElement] = useState<HTMLElement | null>(null);
 
   useLayoutEffect(() => {
