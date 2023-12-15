@@ -110,7 +110,6 @@ class ModalSystem implements IModalSystem {
   };
 
   protected addIntervalModalBackKeepMounted = (removedIntervalModal: Modal) => {
-    console.log(removedIntervalModal, 'removed modal');
     setTimeout(() => {
       this.changeVisibility(removedIntervalModal, true);
     }, removedIntervalModal.interval);
