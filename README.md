@@ -1,6 +1,6 @@
-# ModalPriorityControl
+# rect-priority-modal
 
-ModalPriorityControl is a lightweight, easy-to-use library for managing the priority of modals in web applications. This library allows developers to control which modal appears on top of others based on a flexible priority system.
+rect-priority-modal is a lightweight, easy-to-use library for managing the priority of modals in web applications. This library allows developers to control which modal appears on top of others based on a flexible priority system.
 
 ## Features
 
