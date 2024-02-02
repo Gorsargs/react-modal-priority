@@ -4,8 +4,6 @@ import { IModalContainerProps } from '@/components/ModalContainer/ModalContainer
 import { PortalContainer } from '@/components/ReactPortal/ReactPortal';
 import shortid from 'shortid';
 
-export type ExternalModal = boolean;
-
 type ComponentType = React.FC;
 
 export type ComponentPropsType = JSXElementConstructor<any>;
@@ -18,7 +16,6 @@ export type ModalParams<T extends ComponentPropsType> = {
   interval?: number;
   superPriority?: boolean;
   inlineStyle?: React.CSSProperties;
-  externalModal?: ExternalModal;
   container?: PortalContainer;
   containerProps?: IModalContainerProps;
   keepMounted?: boolean;
@@ -32,7 +29,6 @@ export class Modal<T extends ComponentPropsType = any> {
   interval?: number = 0;
   priority?: number = 0;
   superPriority?: boolean = false;
-  externalModal?: boolean;
   container?: PortalContainer;
   containerProps?: IModalContainerProps;
   keepMounted?: boolean;
@@ -47,7 +43,6 @@ export class Modal<T extends ComponentPropsType = any> {
     interval = 0,
     priority = 0,
     superPriority,
-    externalModal,
     container,
     componentProps,
     keepMounted = false,
@@ -59,7 +54,6 @@ export class Modal<T extends ComponentPropsType = any> {
     this.interval = interval;
     this.priority = priority;
     this.superPriority = superPriority;
-    this.externalModal = externalModal;
     this.container = container;
     this.containerProps = containerProps;
     this.keepMounted = keepMounted;

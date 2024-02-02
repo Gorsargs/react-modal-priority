@@ -37,7 +37,6 @@ const Card = ({ title, description }: { title: string; description?: { title: st
             },
             id: shortid.generate(),
             priority: 10,
-            externalModal: true,
           });
         }}
       >

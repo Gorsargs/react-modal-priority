@@ -126,7 +126,6 @@ function App() {
               id: 'antd modal keep mounted',
               interval: 1000,
               keepMounted: true,
-              externalModal: true,
             });
           }}
           title="Antd modal keep mounted"

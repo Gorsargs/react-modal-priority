@@ -4,7 +4,6 @@ import { CurrentModalProvider } from './CurrentModalContext';
 import { ModalContainer } from '@/components/ModalContainer';
 import { ModalManager, IModalManager } from '@/core/ModalManager';
 import { Modal } from '@/core/Modal';
-import { ExternalModalController } from '@/components/ExternalModalController';
 import { useFocusLastElement } from '@/helpers';
 
 const ModalContext = createContext<IModalManager>({
@@ -26,21 +25,13 @@ export const ModalProvider = ({ children }: PropsWithChildren) => {
         {modals.map((modal) => {
           return (
             <CurrentModalProvider modal={modal} key={modal.id}>
-              {!modal.externalModal ? (
-                <ModalContainer
-                  {...modal.containerProps}
-                  key={modal.id}
-                  Component={modal.component}
-                  componentProps={modal.componentProps}
-                  isVisible={modal.visible}
-                />
-              ) : (
-                <ExternalModalController
-                  Component={modal.component}
-                  componentProps={modal.componentProps}
-                  isVisible={modal.visible}
-                />
-              )}
+              <ModalContainer
+                {...modal.containerProps}
+                key={modal.id}
+                Component={modal.component}
+                componentProps={modal.componentProps}
+                isVisible={modal.visible}
+              />
             </CurrentModalProvider>
           );
         })}
