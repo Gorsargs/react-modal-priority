@@ -28,12 +28,16 @@ export class ModalManager implements IModalManager {
     this.updateReactState();
   }
 
-  protected sortByPriority = (): Modal[] => {
-    return this.modals.sort((a, b) => a.priority - b.priority);
+  private sortedByPriority = (): Modal[] => {
+    return this.modals.sort(this.customSort);
+  };
+
+  protected customSort = (modalA: Modal, modalB: Modal): number => {
+    return modalA.priority - modalB.priority;
   };
 
   protected updateReactState = () => {
-    this._setState(this.sortByPriority());
+    this._setState(this.sortedByPriority());
   };
 
   getModals = (): Modal[] => {
