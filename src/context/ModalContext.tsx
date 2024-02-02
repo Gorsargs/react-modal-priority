@@ -20,17 +20,6 @@ export const ModalProvider = ({ children }: PropsWithChildren) => {
 
   useFocusLastElement(modals);
 
-  // const memoizedContextValue: ModalContext = useMemo(() => {
-  //   return {
-  //     getModals: ModalManager.getModals,
-  //     showModal: ModalManager.showModal,
-  //     closeModal: ModalManager.closeModal,
-  //     hideModal: ModalManager.hideModal,
-  //   };
-  //   // we don't need this functions to be rerendered since it will cause the whole app to rerender
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
   return (
     <ModalContext.Provider value={modalManager}>
       <ReactPortal>
