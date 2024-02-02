@@ -10,9 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.15.0",
     "@types/shortid": "^0.0.32",
     "antd": "^5.12.1",
     "path": "^0.12.7",
