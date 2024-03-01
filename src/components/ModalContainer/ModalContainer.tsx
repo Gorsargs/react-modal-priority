@@ -23,7 +23,7 @@ const ModalContainer: React.FC<IModalContainerProps & ComponentWithProps> = ({
   componentProps,
   horizontalPlacement = 'center',
   verticalPlacement = 'center',
-  classNames,
+  classNames = '',
   inlineStyle,
   isVisible = true,
 }) => {
