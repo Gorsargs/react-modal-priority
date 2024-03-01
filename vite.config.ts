@@ -22,7 +22,7 @@ const viteConfig: UserConfig = {
   build: {
     lib: {
       entry: path.resolve(__dirname, 'index.ts'),
-      name: 'ViteButton',
+      name: 'ReactModalPriority',
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
@@ -34,7 +34,6 @@ const viteConfig: UserConfig = {
         },
       },
     },
-    sourcemap: true,
     emptyOutDir: true,
   },
   plugins: [react(), dts()],
