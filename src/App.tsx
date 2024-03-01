@@ -1,12 +1,12 @@
 import { useRef } from 'react';
 import './App.css';
 import { useCurrentModal } from './context/CurrentModalContext';
-import { useModalContext } from './context/ModalContext';
+import { usePriorityModal } from './context/ModalContext';
 
 let count = 0;
 
-const ModalCard = ({ title }: { title?: string }) => {
-  const { showModal, getModals } = useModalContext();
+const ModalCard = () => {
+  const { showModal, getModals } = usePriorityModal();
   const { closeModal } = useCurrentModal();
 
   console.log('modal');
@@ -32,7 +32,7 @@ const ModalCard = ({ title }: { title?: string }) => {
 };
 
 function App() {
-  const { showModal, getModals } = useModalContext();
+  const { showModal, getModals } = usePriorityModal();
   const divRef = useRef<HTMLDivElement>();
 
   return (

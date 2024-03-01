@@ -19,6 +19,22 @@ const viteConfig: UserConfig = {
     },
   },
   plugins: [react()],
+  build: {
+    lib: {
+      entry: path.resolve(__dirname, 'lib/main.ts'),
+      name: 'react-modal-priority',
+      fileName: (format) => `react-modal-priority.${format}.js`,
+    },
+    rollupOptions: {
+      external: ['react', 'react-dom'],
+      output: {
+        globals: {
+          react: 'React',
+          'react-dom': 'React-dom',
+        },
+      },
+    },
+  },
 };
 
 // https://vitejs.dev/config/
