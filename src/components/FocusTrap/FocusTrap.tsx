@@ -11,6 +11,7 @@ const FocusTrap: React.FC<IFocusTrapProps> = ({ children }) => {
 
   useEffect(() => {
     const modalElement = trapRef.current;
+    if (!modalElement) return;
     //add any focusable HTML element you want to include to this string
     const focusableElements = modalElement.querySelectorAll(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
