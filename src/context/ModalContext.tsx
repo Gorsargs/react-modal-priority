@@ -21,7 +21,11 @@ export const ModalProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <ModalContext.Provider value={modalManager}>
-      <ReactPortal>
+      <ReactPortal
+        customStyles={{
+          position: 'fixed',
+        }}
+      >
         {modals.map((modal) => {
           return (
             <CurrentModalProvider modal={modal} key={modal.id}>

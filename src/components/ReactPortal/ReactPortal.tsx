@@ -8,18 +8,20 @@ export type PortalContainer = string | HTMLElement;
 interface IReactPortal {
   children: React.ReactNode | React.ReactNode[];
   wrapperId?: string;
+  customStyles?: Record<string, string>;
 }
 
-function ReactPortal({ children, wrapperId = RMP_MODAL_CONTAINER }: IReactPortal) {
+function ReactPortal({ children, wrapperId = RMP_MODAL_CONTAINER, customStyles }: IReactPortal) {
   const [wrapperElement, setWrapperElement] = useState<HTMLElement | null>(null);
 
   useLayoutEffect(() => {
     let element = document.getElementById(wrapperId);
+
     if (!element) {
-      element = createWrapperAndAppendToBody(wrapperId);
+      element = createWrapperAndAppendToBody(wrapperId, customStyles);
     }
     setWrapperElement(element);
-  }, [wrapperId]);
+  }, [wrapperId, customStyles]);
 
   if (wrapperElement === null) return null;
 
