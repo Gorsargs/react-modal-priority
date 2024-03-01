@@ -1,10 +1,10 @@
 import { ModalId } from '../ModalManager/ModalManager';
-import { CSSProperties, ComponentProps, JSXElementConstructor } from 'react';
+import { CSSProperties, ComponentClass, ComponentProps, FunctionComponent, JSXElementConstructor } from 'react';
 import { IModalContainerProps } from '@/components/ModalContainer/ModalContainer';
 import { PortalContainer } from '@/components/ReactPortal/ReactPortal';
 import shortid from 'shortid';
 
-type ComponentType = React.FC;
+export type ComponentType<P = any> = ComponentClass<P> | FunctionComponent<P>;
 
 export type ComponentPropsType = JSXElementConstructor<any>;
 

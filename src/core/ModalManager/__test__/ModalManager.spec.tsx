@@ -69,7 +69,7 @@ describe('ModalManager', () => {
     modalManager.showModal(lowPriorityModal);
     modalManager.showModal(highPriorityModal);
     const modals = modalManager.getModals();
-    expect(modals[0].priority).toBeLessThan(modals[1].priority);
+    expect(modals[0].priority).toBeLessThan(modals[1].priority as number);
   });
 
   it('changes visibility of a modal correctly', () => {

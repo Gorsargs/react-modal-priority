@@ -33,7 +33,7 @@ export class ModalManager implements IModalManager {
   };
 
   protected customSort = (modalA: Modal, modalB: Modal): number => {
-    return modalA.priority - modalB.priority;
+    return (modalA.priority as number) - (modalB.priority as number);
   };
 
   protected updateReactState = () => {
@@ -95,14 +95,14 @@ export class ModalManager implements IModalManager {
     const timeout = setTimeout(() => {
       this.showModal(removedIntervalModal);
     }, removedIntervalModal.interval);
-    this.modalsIntervals[removedIntervalModal.id] = timeout;
+    this.modalsIntervals[removedIntervalModal.id as string] = timeout;
   };
 
   protected addIntervalModalBackKeepMounted = (removedIntervalModal: Modal) => {
     const timeout = setTimeout(() => {
       this.changeVisibility(removedIntervalModal, true);
     }, removedIntervalModal.interval);
-    this.modalsIntervals[removedIntervalModal.id] = timeout;
+    this.modalsIntervals[removedIntervalModal.id as string] = timeout;
   };
 
   protected cleanIntervalTimeout = (modalId: ModalId) => {

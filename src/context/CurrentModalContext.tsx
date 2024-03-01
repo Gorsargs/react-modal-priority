@@ -21,7 +21,7 @@ export const CurrentModalProvider: React.FC<CurrentModalProvider> = ({ children,
   const { closeModal } = usePriorityModal();
 
   const memoizedValue = useMemo(() => {
-    return { closeModal: () => closeModal(modal.id), modal };
+    return { closeModal: () => closeModal(modal.id || ''), modal };
   }, [closeModal, modal]);
 
   return <CurrentModalContext.Provider value={memoizedValue}>{children}</CurrentModalContext.Provider>;

@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './ModalContainer.module.css';
 import { FocusTrap } from '@/components/FocusTrap';
-import { ComponentPropsType } from '@/core/Modal/Modal';
+import { ComponentPropsType, ComponentType } from '@/core/Modal/Modal';
 
 type Placement = 'start' | 'end' | 'center';
 
 export type ComponentWithProps<T extends ComponentPropsType = any> = {
-  Component: React.FC;
+  Component: ComponentType;
   componentProps: React.ComponentProps<T>;
 };
 

@@ -1,7 +1,7 @@
 import { describe, it, expect, afterEach } from 'vitest';
 import { render, screen, cleanup, fireEvent, renderHook } from '@testing-library/react';
 import { ModalProvider, usePriorityModal } from '@/context/ModalContext'; // Adjust the import path as necessary
-import { useRef } from 'react';
+import { ReactNode, useRef } from 'react';
 
 describe('ModalProvider', () => {
   // Cleanup after each test to prevent any state leakage
@@ -25,7 +25,7 @@ describe('ModalProvider', () => {
       const handleCloseModal = () => {
         //setting innerText in handleClick because getModals funciton is not reactive but will return the latest value at the time
         closeModal('modal-id');
-        inputRef.current.value = getModals().length.toString();
+        if (inputRef.current) inputRef.current.value = getModals().length.toString();
       };
 
       const handleAddModal = () => {
@@ -33,7 +33,7 @@ describe('ModalProvider', () => {
           component: () => <div></div>,
           id: 'modal-id',
         });
-        inputRef.current.value = getModals().length.toString();
+        if (inputRef.current) inputRef.current.value = getModals().length.toString();
       };
 
       return (
@@ -68,7 +68,7 @@ describe('ModalProvider', () => {
   });
 
   it('returns context value when used inside the ModalProvider', () => {
-    const wrapper = ({ children }) => <ModalProvider>{children}</ModalProvider>;
+    const wrapper = ({ children }: { children: ReactNode }) => <ModalProvider>{children}</ModalProvider>;
     const { result } = renderHook(() => usePriorityModal(), { wrapper });
 
     expect(() => result.current).toBeDefined();
