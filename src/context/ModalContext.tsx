@@ -41,11 +41,11 @@ export const ModalProvider = ({ children }: PropsWithChildren) => {
   );
 };
 
-export const useModalContext = () => {
+export const usePriorityModal = () => {
   const context = useContext(ModalContext);
 
   if (!(context instanceof ModalManager)) {
-    throw new Error('useModalContext must be used inside the ModalProvider');
+    throw new Error('usePriorityModal must be used inside the ModalProvider');
   }
 
   return context;

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useMemo } from 'react';
-import { useModalContext } from './ModalContext';
+import { usePriorityModal } from './ModalContext';
 import { Modal } from '@/core/Modal/';
 
 interface CurrentModalProvider {
@@ -18,7 +18,7 @@ const CurrentModalContext = createContext<CurrentModalContext>({
 });
 
 export const CurrentModalProvider: React.FC<CurrentModalProvider> = ({ children, modal }) => {
-  const { closeModal } = useModalContext();
+  const { closeModal } = usePriorityModal();
 
   const memoizedValue = useMemo(() => {
     return { closeModal: () => closeModal(modal.id), modal };

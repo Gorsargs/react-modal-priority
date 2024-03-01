@@ -1,6 +1,6 @@
 import { describe, it, expect, afterEach } from 'vitest';
 import { render, screen, cleanup, fireEvent, renderHook } from '@testing-library/react';
-import { ModalProvider, useModalContext } from '@/context/ModalContext'; // Adjust the import path as necessary
+import { ModalProvider, usePriorityModal } from '@/context/ModalContext'; // Adjust the import path as necessary
 import { useRef } from 'react';
 
 describe('ModalProvider', () => {
@@ -16,10 +16,10 @@ describe('ModalProvider', () => {
     expect(screen.getByTestId('test-child')).toBeInTheDocument();
   });
 
-  it('provides modal management functions through useModalContext', () => {
+  it('provides modal management functions through usePriorityModal', () => {
     // A test component to consume context
     const TestComponent = () => {
-      const { showModal, closeModal, getModals } = useModalContext();
+      const { showModal, closeModal, getModals } = usePriorityModal();
       const inputRef = useRef<HTMLInputElement>(null);
 
       const handleCloseModal = () => {
@@ -60,16 +60,16 @@ describe('ModalProvider', () => {
 
   it('throws an error when used outside of the ModalProvider', () => {
     const TestComponent = () => {
-      useModalContext();
+      usePriorityModal();
       return <div></div>;
     };
 
-    expect(() => render(<TestComponent />)).toThrow('useModalContext must be used inside the ModalProvider');
+    expect(() => render(<TestComponent />)).toThrow('usePriorityModal must be used inside the ModalProvider');
   });
 
   it('returns context value when used inside the ModalProvider', () => {
     const wrapper = ({ children }) => <ModalProvider>{children}</ModalProvider>;
-    const { result } = renderHook(() => useModalContext(), { wrapper });
+    const { result } = renderHook(() => usePriorityModal(), { wrapper });
 
     expect(() => result.current).toBeDefined();
   });
