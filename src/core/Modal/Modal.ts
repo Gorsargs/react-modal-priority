@@ -24,7 +24,7 @@ export type ModalParams<T extends ComponentPropsType> = {
 export class Modal<T extends ComponentPropsType = any> {
   component: ComponentType;
   componentProps?: ComponentProps<T>;
-  id?: string;
+  id?: string = shortid.generate();
   inlineStyle?: CSSProperties;
   interval?: number = 0;
   priority?: number = 0;
@@ -42,7 +42,7 @@ export class Modal<T extends ComponentPropsType = any> {
     inlineStyle,
     interval = 0,
     priority = 0,
-    superPriority,
+    superPriority = false,
     container,
     componentProps,
     keepMounted = false,

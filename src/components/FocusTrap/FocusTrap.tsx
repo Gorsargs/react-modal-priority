@@ -18,7 +18,7 @@ const FocusTrap: React.FC<IFocusTrapProps> = ({ children }) => {
     const firstElement = focusableElements[0] as HTMLElement;
     const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
 
-    const handleTabKeyPress = (event) => {
+    const handleTabKeyPress = (event: KeyboardEvent) => {
       if (event.key === 'Tab') {
         if (event.shiftKey && document.activeElement === firstElement) {
           event.preventDefault();

@@ -1,9 +1,17 @@
+import { UserConfig, mergeConfig } from 'vitest/config';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
-// https://vitejs.dev/config/
-export default defineConfig({
+const vitestConfig: UserConfig = {
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './test/setup.ts',
+  },
+};
+
+const viteConfig: UserConfig = {
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -11,4 +19,12 @@ export default defineConfig({
     },
   },
   plugins: [react()],
-});
+};
+
+// https://vitejs.dev/config/
+export default mergeConfig(
+  viteConfig,
+  defineConfig({
+    ...vitestConfig,
+  }),
+);

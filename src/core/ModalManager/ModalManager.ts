@@ -1,5 +1,5 @@
 import React, { JSXElementConstructor } from 'react';
-import { Modal, ComponentPropsType, ModalParams } from '../Modal';
+import { Modal, ComponentPropsType, ModalParams } from '@/core/Modal';
 
 export type ModalId = string;
 
@@ -49,7 +49,7 @@ export class ModalManager implements IModalManager {
     if (tempModal) return;
 
     if (newModal) {
-      this.modals = [...this.modals, new Modal<T>(newModal)];
+      this.modals = [...this.modals, new Modal(newModal)];
     }
   };
 

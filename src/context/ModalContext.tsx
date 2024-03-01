@@ -4,7 +4,7 @@ import { CurrentModalProvider } from './CurrentModalContext';
 import { ModalContainer } from '@/components/ModalContainer';
 import { ModalManager, IModalManager } from '@/core/ModalManager';
 import { Modal } from '@/core/Modal';
-import { useFocusLastElement } from '@/helpers';
+import { useFocusLastElement } from '@/hooks';
 
 const ModalContext = createContext<IModalManager>({
   showModal: () => {},
@@ -44,7 +44,7 @@ export const ModalProvider = ({ children }: PropsWithChildren) => {
 export const useModalContext = () => {
   const context = useContext(ModalContext);
 
-  if (!context) {
+  if (!(context instanceof ModalManager)) {
     throw new Error('useModalContext must be used inside the ModalProvider');
   }
 
