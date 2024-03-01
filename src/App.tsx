@@ -33,7 +33,7 @@ const ModalCard = () => {
 
 function App() {
   const { showModal, getModals } = usePriorityModal();
-  const divRef = useRef<HTMLDivElement>();
+  const divRef = useRef<HTMLDivElement>(null);
 
   return (
     <div>
@@ -95,7 +95,7 @@ function App() {
       </button>
       <button
         onClick={() => {
-          divRef.current.textContent = getModals().length.toString();
+          if (divRef.current) divRef.current.textContent = getModals().length.toString();
         }}
       >
         btn
