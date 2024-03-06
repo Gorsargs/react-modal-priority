@@ -1,5 +1,4 @@
 import { useEffect, ReactNode, useRef } from 'react';
-import styles from './FocusTrap.module.css';
 import { MODAL_FOCUS_CLASSNAME } from '@/constants/constants';
 
 interface IFocusTrapProps {
@@ -38,7 +37,14 @@ const FocusTrap: React.FC<IFocusTrapProps> = ({ children }) => {
   }, [trapRef]);
 
   return (
-    <div ref={trapRef} className={`${MODAL_FOCUS_CLASSNAME} ${styles.container}`} tabIndex={-1}>
+    <div
+      ref={trapRef}
+      className={MODAL_FOCUS_CLASSNAME}
+      tabIndex={-1}
+      style={{
+        outline: 'none',
+      }}
+    >
       {children}
     </div>
   );

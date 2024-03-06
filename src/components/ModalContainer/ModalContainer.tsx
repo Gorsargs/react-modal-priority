@@ -1,9 +1,52 @@
 import React from 'react';
-import styles from './ModalContainer.module.css';
 import { FocusTrap } from '@/components/FocusTrap';
 import { ComponentPropsType, ComponentType } from '@/core/Modal/Modal';
 
 type Placement = 'start' | 'end' | 'center';
+
+interface stylesInterface {
+  container: React.CSSProperties;
+  vertical__center: React.CSSProperties;
+  vertical__start: React.CSSProperties;
+  vertical__end: React.CSSProperties;
+  horizontal__center: React.CSSProperties;
+  horizontal__end: React.CSSProperties;
+  horizontal__start: React.CSSProperties;
+}
+
+const styles: stylesInterface = {
+  container: {
+    display: 'flex',
+    position: 'fixed',
+    height: '100%',
+    width: '100%',
+    top: 0,
+  },
+
+  vertical__center: {
+    alignItems: 'center',
+  },
+
+  vertical__start: {
+    alignItems: 'start',
+  },
+
+  vertical__end: {
+    alignItems: 'end',
+  },
+
+  horizontal__start: {
+    justifyContent: 'start',
+  },
+
+  horizontal__end: {
+    justifyContent: 'end',
+  },
+
+  horizontal__center: {
+    justifyContent: 'center',
+  },
+};
 
 export type ComponentWithProps<T extends ComponentPropsType = any> = {
   Component: ComponentType;
@@ -31,9 +74,16 @@ const ModalContainer: React.FC<IModalContainerProps & ComponentWithProps> = ({
   const hPlacement = styles[`horizontal__${horizontalPlacement}`];
   return (
     <div
-      className={`${styles.container} ${vPlacement} ${hPlacement} ${classNames} backdrop-blur`}
+      className={classNames}
       aria-hidden
-      style={{ zIndex: 1000, ...inlineStyle, visibility: isVisible ? 'visible' : 'hidden' }}
+      style={{
+        zIndex: 1000,
+        ...vPlacement,
+        ...hPlacement,
+        ...styles.container,
+        ...inlineStyle,
+        visibility: isVisible ? 'visible' : 'hidden',
+      }}
     >
       <FocusTrap>
         <Component {...componentProps} />
