@@ -1,6 +1,6 @@
 {
   "name": "react-modal-priority",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "type": "module",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
@@ -57,5 +57,6 @@
     "vite": "^5.0.0",
     "vite-plugin-dts": "^3.7.3",
     "vitest": "^1.2.2"
-  }
+  },
+  "license": "MIT"
 }
