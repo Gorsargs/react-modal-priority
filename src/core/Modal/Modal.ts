@@ -2,7 +2,7 @@ import { ModalId } from '../ModalManager/ModalManager';
 import { CSSProperties, ComponentClass, ComponentProps, FunctionComponent, JSXElementConstructor } from 'react';
 import { IModalContainerProps } from '@/components/ModalContainer/ModalContainer';
 import { PortalContainer } from '@/components/ReactPortal/ReactPortal';
-import shortid from 'shortid';
+import generateUniqueRandomString from '@/helpers/gererateUniqueRandomString';
 
 export type ComponentType<P = any> = ComponentClass<P> | FunctionComponent<P>;
 
@@ -24,7 +24,7 @@ export type ModalParams<T extends ComponentPropsType> = {
 export class Modal<T extends ComponentPropsType = any> {
   component: ComponentType;
   componentProps?: ComponentProps<T>;
-  id?: string = shortid.generate();
+  id?: string = generateUniqueRandomString(10);
   inlineStyle?: CSSProperties;
   interval?: number = 0;
   priority?: number = 0;
@@ -38,7 +38,7 @@ export class Modal<T extends ComponentPropsType = any> {
   constructor({
     component,
     containerProps,
-    id = shortid.generate(),
+    id = generateUniqueRandomString(10),
     inlineStyle,
     interval = 0,
     priority = 0,
