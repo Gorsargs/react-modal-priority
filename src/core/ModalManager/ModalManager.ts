@@ -82,7 +82,6 @@ export class ModalManager implements IModalManager {
 
     if (tempModal.interval) {
       this.modals = this.modals.filter((modal) => modal.id !== tempModal.id);
-      // eslint-disable-next-line no-debugger
       this.addIntervalModalBack(tempModal);
       return;
     }
