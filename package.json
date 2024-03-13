@@ -5,7 +5,9 @@
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
-  "repository": "git://github.com/Gorsargs/react-modal-priority.git",
+  "repository": {
+    "url": "https://github.com/Gorsargs/react-modal-priority.git"
+  },
   "author": {
     "name": "Gor Sargsyan",
     "email": "gorsargsyanm@gmail.com"
