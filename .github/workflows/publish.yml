@@ -44,6 +44,9 @@ jobs:
           git config user.email "gorsargsyanm@gmail.com"
 
       - name: Semantic Release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN : ${{ secrets.CHANGE_ACCESS_TOKEN }}
         uses: cycjimmy/semantic-release-action@v4
         with:
       # You can specify specifying version range for the extra plugins if you prefer.
