@@ -21,6 +21,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Run Linter
+        run: npm run lint
+
+      - name: Test library
+        run: npm run test
+
       - name: Build
         run: npm run build
 
@@ -29,10 +35,17 @@ jobs:
           git config user.name "Gor Sargsyan"
           git config user.email "gorsargsyanm@gmail.com"
 
-      - name: Run standard-version
-        run: npx standard-version
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v2
+        with:
+          semantic_version: 17
+          branch: main
+          extra_plugins: |
+            @semantic-release/changelog
+            @semantic-release/git
 
       - name: Publish to npm
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN : ${{secret.GITHUB_TOKEN}}

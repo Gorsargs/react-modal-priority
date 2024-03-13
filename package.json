@@ -26,11 +26,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "prepare": "npm run build",
+    "prepare": "husky",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
+    "commit": "cz"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -40,7 +41,31 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/changelog",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
     "@types/node": "^20.10.3",
@@ -50,17 +75,25 @@
     "@typescript-eslint/parser": "^6.13.2",
     "@vitejs/plugin-react": "^4.2.0",
     "@vitest/coverage-v8": "^1.2.2",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
+    "husky": "^9.0.11",
     "jsdom": "^24.0.0",
     "postcss": "^8.4.32",
     "prettier": "^3.1.0",
-    "standard-version": "^9.5.0",
+    "semantic-release": "^23.0.2",
     "typescript": "^5.2.2",
     "vite": "^5.0.0",
     "vite-plugin-dts": "^3.7.3",
     "vitest": "^1.2.2"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
