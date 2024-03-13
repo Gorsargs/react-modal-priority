@@ -29,6 +29,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        
+      - name: Configure Git Protocol
+        run: git config --global url."https://".insteadOf git://  
 
       - name: Configure git user info
         run: |
